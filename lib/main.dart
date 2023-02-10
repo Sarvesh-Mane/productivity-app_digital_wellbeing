@@ -22,11 +22,15 @@ class _HomeState extends State<Home> {
     "Instagram": 24,
     "Whatsapp": 45,
     "Reddit": 32,
-    "Facebook": 44,
+    "Facebook":50,
+    "Youtube":60,
+    "Amazon":20,
+    "Flipkart":12,
+   
   };
 
-  List<String> Apps =["Instagram","Whatsapp","Reddit","Facebook"];
-  List<int> time =[24,45,32,44];
+  List<String> Apps =["Instagram","Whatsapp","Reddit","Facebook","Youtube","Amazon","Flipkart"];
+  List<int> time =[24,45,32,50,100,20,12 ];
 
 
 
@@ -37,7 +41,12 @@ class _HomeState extends State<Home> {
   Colors.greenAccent,
   Colors.red,
   Colors.blue,
-  Colors.orange
+  Colors.orange,
+    Colors.yellowAccent, 
+    Colors.orangeAccent,
+    Colors.indigo,
+
+
   ];
 
 
@@ -73,98 +82,117 @@ class _HomeState extends State<Home> {
         backgroundColor: Colors.transparent,
         elevation: 2,
       ),
-    body: Container(
-    height: 900,
-    width: 430,
-    decoration: const BoxDecoration(
+    body: SingleChildScrollView(
+      child: Container(
+     
+      
+      decoration: const BoxDecoration(
+        image: DecorationImage(
+          image:  AssetImage('assets/seee.png',),
+          fit: BoxFit.scaleDown,
+          alignment: Alignment.topCenter,
+          scale: 1.5,
+          filterQuality: FilterQuality.high,
 
-
-      gradient: LinearGradient(
-        colors: [Color(0xFF673AB7),Color(0xFFAA00FF)],
-        begin: Alignment.bottomCenter,
-        end: Alignment.topCenter,
-
-
-      ),
-    ),
-      child: SafeArea(
-        child:
-           Column(
-            children: [
-              SizedBox(height: 20,),
-              Text(
-                'Daily App Usage',
-                style: TextStyle(
-                  fontSize: 28,
-
-                ),
-              ),
-              SizedBox(height: 20,),
-              SafeArea(
-
-                  child: Pie(
-                    dataMap:  data_Map,
-                    colorList: color_list,
-                    centerText: "App Usage",
-
-
-                  )
-                ),
-              ListView(
-                shrinkWrap: true,
-
-                children: [
-
-                     Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        SizedBox(width: 50,),
-                        Text("Apps",style: TextStyle(
-                          fontSize: 20,
-                        ),),
-                        Spacer(),
-
-
-                        Text("Time Spent",style: TextStyle(
-                          fontSize: 20,)),
-                        SizedBox(width: 50,),
-                      ],
-                    ),
-                  ListView.builder(
-                    itemCount: data_Map.length,
-                    shrinkWrap: true,
-                    itemBuilder: (BuildContext context, int index) {
-                      return apptile(
-                        appname: Apps[index],
-                        time_min: time[index],
+          colorFilter: ColorFilter.mode(
+            Color(0xFFAA00FF) , BlendMode.modulate),
+        ),
 
 
 
+        gradient: LinearGradient(
+          colors: [Color(0xFF673AB7),Color(0xFFAA00FF)],
+          begin: Alignment.bottomCenter,
+          end: Alignment.topCenter,
 
 
-                      );
-                    },
-                  ),
-
-
-
-
-                ],
-              )
-
-
-
-
-
-
-
-
-
-
-            ],
-          ),
         ),
       ),
+        child: SafeArea(
+          child:
+             Column(
+              children: [
+                SizedBox(height: 20,),
+
+                   Text(
+                   'Daily App Usage',
+                    style: TextStyle(
+                      fontSize: 28,
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+
+                    ),
+
+                ),
+                SizedBox(height: 20,),
+                SafeArea(
+
+                    child: Pie(
+                      dataMap:  data_Map,
+                      colorList: color_list,
+                      centerText: "App Usage",
+
+
+                    )
+                  ),
+                SizedBox(height: 20,)         ,
+                ListView(
+                  shrinkWrap: true,
+
+                  children: [
+
+                       Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          SizedBox(width: 50,),
+                          Text("Apps",style: TextStyle(
+                            fontSize: 20,
+                          ),),
+                          Spacer(),
+
+
+                          Text("Time Spent",style: TextStyle(
+                            fontSize: 20,)),
+                          SizedBox(width: 50,),
+                        ],
+                      ),
+                    SizedBox(height: 10,)   ,
+                    ListView.builder(
+                      itemCount: data_Map.length,
+                      shrinkWrap: true,
+                      itemBuilder: (BuildContext context, int index) {
+                        return apptile(
+                          appname: Apps[index],
+                          time_min: time[index],
+
+
+
+
+
+                        );
+                      },
+                    ),
+
+
+
+
+                  ],
+                )
+
+
+
+
+
+
+
+
+
+
+              ],
+            ),
+          ),
+        ),
+    ),
     );
 
 
